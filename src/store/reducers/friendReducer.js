@@ -25,9 +25,14 @@ const friendReducer = (state = initState, action) => {
 
   switch (action.type) {
     case 'ADD_FRIEND':
-    console.log('Friend added', action.friend)
+      console.log('Friend added', action.friend);
+      return state;
+    case 'CATCH_ERROR':
+      console.log('ERROR', action.err);
+      return state;
+    default:
+      return state;
   }
-  return state
 }
 
 export default friendReducer
