@@ -1,5 +1,5 @@
 {
-  "name": "jul_lista",
+  "name": "new_jul_lista",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,7 +10,9 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.5",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "react-redux-firebase": "^2.1.9",
+    "redux-firestore": "^0.5.8"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -5,7 +5,7 @@ export const addFriend = (friend) => {
     firestore.collection('friends').add({
       ...friend,
       authorFirstName: 'Anastasia',
-      authorLasttName: 'Yanvareva',
+      authorLastName: 'Yanvareva',
       authorId: 12345,
       createdAt: new Date()
     }).then(()=>{

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import FriendList from '../friends/FriendList'
 import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { firestoreConnect } from 'react-redux-firebase'
 
 class Dashboard extends Component {
   render() {
@@ -15,10 +17,16 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = (store) => {
+const mapStateToProps = (state) => {
+  console.log(state)
   return({
-    friends: store.friend.friends
+    friends: state.firestore.ordered.friends
   })
 }
 
-export default connect(mapStateToProps)(Dashboard)
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+    { collection: 'friends'}
+  ])
+)(Dashboard)
