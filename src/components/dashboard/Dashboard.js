@@ -3,10 +3,14 @@ import FriendList from '../friends/FriendList'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase'
+import { Redirect } from 'react-router-dom'
 
 class Dashboard extends Component {
   render() {
-    const { friends } = this.props
+    const { friends, auth } = this.props
+
+    if(!auth.uid) return <Redirect to="/signin" />
+
     return(
       <div className="container">
         <div className="row">
@@ -20,7 +24,8 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   console.log(state)
   return({
-    friends: state.firestore.ordered.friends
+    friends: state.firestore.ordered.friends,
+    auth: state.firebase.auth
   })
 }
 
