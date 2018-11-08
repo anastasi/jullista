@@ -2,9 +2,12 @@ import React from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
+import { Redirect } from 'react-router-dom'
 
-const GiftsList = (props) => {
-  const {friend} = props
+const SingleFriend = (props) => {
+  const { friend, auth } = props
+  if(!auth.uid) return <Redirect to="/signin" />
+
   if(friend) {
     return (
       <div className="section container">
@@ -40,7 +43,8 @@ const mapStateToProps = (state, ownProps) => {
   const friends = state.firestore.data.friends
   const friend = friends ? friends[id] : null
   return {
-    friend: friend
+    friend: friend,
+    auth: state.firebase.auth
   }
 }
 
@@ -49,4 +53,4 @@ export default compose(
   firestoreConnect([
     {collection: 'friends'}
   ])
-)(GiftsList)
+)(SingleFriend)
